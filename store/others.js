@@ -1,7 +1,7 @@
 
 export const state = () =>
   ({
-    isFinished: false
+    isFinished: false,
   })
 
 export const mutations = {
@@ -12,10 +12,6 @@ export const mutations = {
       '--static100vh',
       `${window.outerHeight}px`
     )
-  },
-
-  finishExperiment(state){
-    state.isFinished = true
   },
 
 }

@@ -16,7 +16,8 @@ export default {
     readyToTap(e){
       this.$store.commit("experiment/tapped", e)
     }
-  }
+  },
+
 }
 </script>
 
