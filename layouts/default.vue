@@ -1,15 +1,10 @@
 <template lang="pug">
   div#root
     nuxt
-    submit-component
 </template>
 
 <script>
-import SubmitComponent from '~/components/SubmitComponent'
 export default {
-  components:{
-    SubmitComponent
-  },
   mounted(){
     if(process.client){
       this.$store.commit('others/setStatic100vh')

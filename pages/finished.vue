@@ -1,18 +1,6 @@
 <template lang="pug">
-  div
+  div finished
 </template>
-
-<script>
-import NextButton from '~/components/NextButton'
-export default {
-  components: {
-    NextButton
-  },
-  created(){
-    this.$store.commit('others/finishExperiment')
-  }
-}
-</script>
 
 <style lang="stylus" scoped>
 .finished
