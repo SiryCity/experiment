@@ -22,9 +22,13 @@ export const actions = {
    * 
    * 
    */
-  checkAndRedirectOrCount(context, pageType){
+  checkAndRedirectOrCount({commit, rootState}, pageType){
     
-    console.dir(context)
+    const progressCount = rootState.progress.progressCount
+
+    if(pageType === 0){
+      console.log(progressCount)
+    }
   }
 
 }
