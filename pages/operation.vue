@@ -12,7 +12,7 @@ export default {
     NextButton
   },
   mounted(){
-    this.$store.dispatch('progress/checkAndRedirectOrCount', 0)
+    this.$store.dispatch('progress/checkAndRedirectOrNot', 'operation')
   },
 }
 </script>

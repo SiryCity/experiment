@@ -3,32 +3,21 @@ export const state = () =>
   ({
     /**
      * progressCount
-     *  0 実験に同意していない
-     *  1 実験中
-     *  2 実験終了
-     *  3 実験結果送信済み
+     *  directly    外部からいきなり
+     *  operation   実験に同意していない
+     *  experiment  実験に同意し、実験が開始した
+     *  finished    実験終了
+     *  thanks      実験結果送信済み
      */
-    progressCount: 0,
+    pageType: 'directly',
   })
 
 
 export const actions = {
-
-  /**
-   * pageType
-   *  0 実験の直前
-   *    progressCountが0なら1にする
-   *    0以外なら0にして、実験結果をリセット
-   * 
-   * 
-   */
-  checkAndRedirectOrCount({commit, rootState}, pageType){
+  checkAndRedirectOrNot({commit, rootState}, currentPageType){
     
-    const progressCount = rootState.progress.progressCount
+    const previousPageType = rootState.progress.pageType
+    const results = rootState.experiment.results
 
-    if(pageType === 0){
-      console.log(progressCount)
-    }
   }
-
 }
