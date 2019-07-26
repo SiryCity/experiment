@@ -10,7 +10,10 @@ import NextButton from '~/components/NextButton'
 export default {
   components: {
     NextButton
-  }
+  },
+  mounted(){
+    this.$store.dispatch('progress/checkAndRedirectOrNot', 'consent')
+  },
 }
 </script>
 

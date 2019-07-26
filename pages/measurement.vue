@@ -17,6 +17,9 @@ export default {
       this.$store.commit("experiment/tapped", e)
     }
   },
+  mounted(){
+    this.$store.dispatch('progress/checkAndRedirectOrNot', 'measurement')
+  },
 
 }
 </script>
