@@ -4,6 +4,10 @@ export const mutations = {
 
   tapped(state, e){
 
+    // デバイスの大きさ
+    const dx = window.outerWidth
+    const dy = window.outerHeight
+
     // 画面に表示されている位置 p = position
     const px = state.positionXpixel
     const py = state.positionYpixel
@@ -17,6 +21,8 @@ export const mutations = {
 
     // 結果
     const result = {
+      dx,
+      dy,
       px,
       py,
       tx,
@@ -25,8 +31,8 @@ export const mutations = {
     }
 
     // 次の座標をランダムに更新
-    state.positionXpixel = window.outerWidth / 20 * ~~(Math.random() * 20)
-    state.positionYpixel = window.outerHeight / 20 * ~~(Math.random() * 20)
+    state.positionXpixel = dx / 20 * ~~(Math.random() * 20)
+    state.positionYpixel = dy / 20 * ~~(Math.random() * 20)
     
     state.results = [... state.results, result]
 
