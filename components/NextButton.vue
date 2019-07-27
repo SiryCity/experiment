@@ -1,11 +1,12 @@
 <template lang="pug">
   div.next-button
-    nuxt-link.next-button__button(:to='to') {{text}}
+      nuxt-link.next-button__button(v-if='!post' :to='to') {{text}}
+      nuxt-link.next-button__button(v-else :to='to' @click.native='$store.dispatch("firebase/insert")') {{text}}
 </template>
 
 <script>
 export default {
-  props: ['to', 'text']
+  props: ['to', 'text', 'post']
 }
 </script>
 

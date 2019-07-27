@@ -1,9 +1,16 @@
 <template lang="pug">
-  div finished
+  div.index
+    h1 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    p test
+    next-button(to='/thanks' text='実験結果を送信' post='true')
 </template>
 
 <script>
+import NextButton from '~/components/NextButton'
 export default {
+  components: {
+    NextButton
+  },
   mounted(){
     this.$store.dispatch('progress/checkAndRedirectOrNot', 'finished')
   },
