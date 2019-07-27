@@ -22,7 +22,9 @@ export const actions = {
     const previousPageType = rootState.progress.pageType
 
     // 外部から来た場合は必ずindexに戻る
+
     if(previousPageType === 'directly'){
+      commit('updatePageType', 'index')
       this.$router.push('/')
       return
     }
@@ -30,7 +32,9 @@ export const actions = {
     // 内部からならページタイプを更新
     commit('updatePageType', currentPageType)
 
-    // 最初の3つに飛んだら
+
+
+    // 最初の3つを開いたら
     if(
       currentPageType === 'index'
       || currentPageType === 'consent'
@@ -56,10 +60,13 @@ export const actions = {
       }
 
       // 他は特に何もしない
+      commit('resetResults', rootState)
       return
     }
-    
-    // 実験中のページに飛んだら
+
+
+
+    // 実験中のページを開いたら
     if(currentPageType === 'measurement'){
 
       // operationか
@@ -83,16 +90,49 @@ export const actions = {
         this.$router.push('/')
         return
       }
+    }
+
+
+
+    // 実験完了のページを開いたら
+    if(currentPageType === 'finished'){
+      
+      // measurementか
+      // finishedからなら順当な流れなので何もしない
+      if(
+        previousPageType === 'measurement'
+        || previousPageType === 'finished'
+      ){
+        this.$router.push('finished')
+        return 
+      }
+
+      // 他はトップに戻す
+      else {
+        this.$router.push('/')
+        return
+      }
 
     }
     
-    // 実験完了のページに飛んだら
-    if(currentPageType === 'finished'){
-      
-    }
-    
+    // 送信完了のページを開いたら
     if(currentPageType === 'thanks'){
       
+      // finishedか
+      // thanksからなら順当な流れなので何もしない
+      if(
+        previousPageType === 'finished'
+        || previousPageType === 'thanks'
+      ){
+        this.$router.push('thanks')
+        return 
+      }
+
+      // 他はトップに戻す
+      else {
+        this.$router.push('/')
+        return
+      }
     }
   }
 }
@@ -103,6 +143,6 @@ export const mutations = {
   },
 
   resetResults(_, rootState){
-    console.dir(rootState.experiment.results)
+    rootState.experiment.results = []
   }
 }
