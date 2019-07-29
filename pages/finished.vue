@@ -2,7 +2,7 @@
   div.index
     h1 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     p test
-    next-button(to='/thanks' text='実験結果を送信' post='true')
+    next-button(to='/thanks' text='実験結果を送信' post='finish')
 </template>
 
 <script>

@@ -1,7 +1,8 @@
 <template lang="pug">
   div.next-button
+      nuxt-link.next-button__button(v-if='post==="finish"' :to='to' @click.native='$store.dispatch("firebase/insert")') {{text}}
+      nuxt-link.next-button__button(v-if='post==="begin"' :to='to' @click.native='$store.dispatch("beginExperiment/init")') {{text}}
       nuxt-link.next-button__button(v-if='!post' :to='to') {{text}}
-      nuxt-link.next-button__button(v-else :to='to' @click.native='$store.dispatch("firebase/insert")') {{text}}
 </template>
 
 <script>

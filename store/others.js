@@ -1,9 +1,3 @@
-
-export const state = () =>
-  ({
-    isFinished: false,
-  })
-
 export const mutations = {
   //画面1個分の高さをセットする
   setStatic100vh(){

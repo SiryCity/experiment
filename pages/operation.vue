@@ -2,7 +2,7 @@
   div.operation
     h1 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     p test
-    next-button(to='/measurement' text='実験をはじめる')
+    next-button(to='/measurement' text='実験をはじめる' post='begin')
 </template>
 
 <script>

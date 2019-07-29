@@ -4,6 +4,12 @@ export const mutations = {
 
   tapped(state, e){
 
+    // 何回タップしたらゲームが終了か
+    const LIMIT = 3
+
+    // 座標を何分割するか
+    const DIVISIONS = 20
+
     // デバイスの大きさ
     const dx = window.outerWidth
     const dy = window.outerHeight
@@ -17,7 +23,7 @@ export const mutations = {
     const ty = e.pageYpixel
 
     // 時間
-    const t = (`${new Date().getTime()}`.slice(5)|0 )/ 1000
+    const t = (`${new Date().getTime()}`.slice(5)|0 )/ 1000 - state.initialTime
 
     // 結果
     const result = {
@@ -31,14 +37,12 @@ export const mutations = {
     }
 
     // 次の座標をランダムに更新
-    state.positionXpixel = dx / 20 * ~~(Math.random() * 20)
-    state.positionYpixel = dy / 20 * ~~(Math.random() * 20)
+    state.positionXpixel = dx / DIVISIONS * ~~(Math.random() * DIVISIONS)
+    state.positionYpixel = dy / DIVISIONS * ~~(Math.random() * DIVISIONS)
     
     state.results = [... state.results, result]
 
-    
-
-    if(state.results.length >= state.limit){
+    if(state.results.length >= LIMIT){
       this.$router.push('finished')
     }
   }
@@ -49,6 +53,6 @@ export const state = () =>
   ({
     positionXpixel: 0,
     positionYpixel: 0,
+    initialTime: 0,
     results: [],
-    limit: 3,
   })
