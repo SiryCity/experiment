@@ -1,11 +1,9 @@
-import VueRouter from "vue-router";
-
 export const mutations = {
 
   tapped(state, e){
 
     // 何回タップしたらゲームが終了か
-    const LIMIT = 3
+    const LIMIT = 30
 
     // 座標を何分割するか
     const DIVISIONS = 20
@@ -22,8 +20,9 @@ export const mutations = {
     const tx = e.pageXpixel
     const ty = e.pageYpixel
 
+    state.previousTime = ~~(state.previousTime * 1000) / 1000
     // 時間
-    const t = (`${new Date().getTime()}`.slice(5)|0 )/ 1000 - state.initialTime
+    const t = ~~(((new Date().getTime() + '').slice(5)|0) - state.previousTime * 1000) / 1000
 
     // 結果
     const result = {
@@ -42,6 +41,8 @@ export const mutations = {
     
     state.results = [... state.results, result]
 
+    state.previousTime += t
+
     if(state.results.length >= LIMIT){
       this.$router.push('finished')
     }
@@ -53,6 +54,6 @@ export const state = () =>
   ({
     positionXpixel: 0,
     positionYpixel: 0,
-    initialTime: 0,
+    previousTime: 0,
     results: [],
   })

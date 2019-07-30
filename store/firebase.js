@@ -3,6 +3,6 @@ import firebase from "~/plugins/firebase.js"
 export const actions = {
   async insert({rootState}){
     const results = rootState.experiment.results
-    console.dir(results)
+    console.log(results.map(e => e.t))
   }
 }
