@@ -1,11 +1,11 @@
 export const actions = {
   init({commit, rootState}){
-    commit('setInitialPositionAndTime', rootState)
+    commit('setInitialStatus', rootState)
   }
 }
 
 export const mutations = {
-  setInitialPositionAndTime(_, rootState){
+  setInitialStatus(_, rootState){
 
     const dx = window.outerWidth
     const dy = window.outerHeight
@@ -15,5 +15,6 @@ export const mutations = {
     rootState.experiment.positionYpixel = dy / DIVISIONS * ~~(Math.random() * DIVISIONS)
     
     rootState.experiment.previousTime = ~~((new Date().getTime() + '').slice(5)|0) / 1000
+    rootState.experiment.uniqueId = ~~(Math.random() * 1000000)
   },
 }
