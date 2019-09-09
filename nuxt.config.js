@@ -20,7 +20,7 @@ module.exports = {
     ]
   },
   /*
-  ** Customize the progress-bar color
+  ** Customize the redirect-bar color
   */
   loading: { color: '#fff' },
   /*

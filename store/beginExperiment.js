@@ -11,16 +11,20 @@ export const actions = {
 }
 
 export const mutations = {
-  setInitialStatus(_, rootState){
+  setInitialStatus(_, {experiment}){
 
     const dx = window.outerWidth
     const dy = window.outerHeight
-    const DIVISIONS = 20
+    const DIVISIONS = 21
 
-    rootState.experiment.positionXpixel = dx / DIVISIONS * ~~(Math.random() * DIVISIONS)
-    rootState.experiment.positionYpixel = dy / DIVISIONS * ~~(Math.random() * DIVISIONS)
+    experiment.translateX = dx / DIVISIONS * ~~(Math.random() * DIVISIONS)
+    experiment.translateY = dy / DIVISIONS * ~~(Math.random() * DIVISIONS)
     
-    rootState.experiment.previousTime = ~~((new Date().getTime() + '').slice(5)|0) / 1000
-    rootState.experiment.uniqueId = ~~(Math.random() * 1000000)
+    experiment.previousTime = ~~((new Date().getTime() + '').slice(5)|0) / 1000
+    experiment.uniqueId = ~~(Math.random() * 1000000)
+
+    experiment.h = ~~(Math.random() * 256)
+    experiment.s = ~~(Math.random() * 101)
+    experiment.l = ~~(Math.random() * 101)
   },
 }

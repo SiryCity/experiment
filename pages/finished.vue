@@ -20,7 +20,7 @@ export default {
     NextButton
   },
   mounted(){
-    this.$store.dispatch('progress/checkAndRedirectOrNot', 'finished')
+    this.$store.dispatch('redirect/redirection', 'finished')
   },
 }
 </script>

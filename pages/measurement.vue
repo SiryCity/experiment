@@ -23,11 +23,11 @@ export default {
   },
   methods: {
     readyToTap(e){
-      this.$store.commit("experiment/tapped", e)
+      this.$store.commit('experiment/tapped', e)
     }
   },
   mounted(){
-    this.$store.dispatch('progress/checkAndRedirectOrNot', 'measurement')
+    this.$store.dispatch('redirect/redirection', 'measurement')
   },
 
 }
@@ -38,12 +38,11 @@ export default {
   width 100%
   height 100%
   overflow hidden
+  background #fff
 
 .measurement__circle
   width 5vmin
   height 5vmin
   background #f54242
   border-radius 50%
-  transition-duration .1s
-  transition-property transform
 </style>

@@ -20,9 +20,10 @@ export const getters = {
   css: (_, __, {experiment}) =>
     ({
       transform: `
-        translateX(${experiment.positionXpixel}px)
-        translateY(${experiment.positionYpixel}px)
+        translateX(${experiment.translateX}px)
+        translateY(${experiment.translateY}px)
       `,
+      background: `hsl(${experiment.h},${experiment.s}%,${experiment.l}%)`
     }),
 
   calculateResults(_, __, rootState){

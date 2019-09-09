@@ -5,7 +5,7 @@
 export const state = () =>
   ({
     /**
-     * progressCount
+     * redirectCount
      *  directly    外部からいきなり
      *  index       最初の画面
      *  consent     実験に同意していない
@@ -19,10 +19,10 @@ export const state = () =>
 
 
 export const actions = {
-  checkAndRedirectOrNot({commit, rootState}, currentPageType){
+  redirection({commit, rootState}, currentPageType){
     
     // 直前のページタイプを取得
-    const previousPageType = rootState.progress.pageType
+    const previousPageType = rootState.redirect.pageType
 
     // 外部から来た場合は必ずindexに戻る
 
