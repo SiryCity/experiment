@@ -2,7 +2,7 @@
  * 実験結果をfirestoreに保存
  */
 
-import firebase from "~/plugins/firebase.js"
+import firebase from 'firebase/app';
 
 export const actions = {
 

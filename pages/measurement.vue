@@ -7,9 +7,10 @@
   thanks      お礼を言う もう一度計測するボタンを置く
 -->
 <template lang="pug">
-  div.measurement
-    div.measurement__hitarea(
-      @click='readyToTap'
+  div.measurement(
+    @click='readyToTap'
+  )
+    div.measurement__circle(
       :style='$store.getters["others/css"]'
     )
 </template>
@@ -38,7 +39,7 @@ export default {
   height 100%
   overflow hidden
 
-.measurement__hitarea
+.measurement__circle
   width 5vmin
   height 5vmin
   background #f54242

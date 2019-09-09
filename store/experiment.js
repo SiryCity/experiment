@@ -8,6 +8,9 @@ export const mutations = {
     // 座標を何分割するか
     const DIVISIONS = 20
 
+    // ユニークID
+    const uniqueId = state.uniqueId
+
     // デバイスの大きさ d = device
     const dx = window.outerWidth
     const dy = window.outerHeight
@@ -17,15 +20,15 @@ export const mutations = {
     const py = state.positionYpixel
 
     // 被験者がタップした位置 t = tapped
-    const tx = e.pageXpixel
-    const ty = e.pageYpixel
+    const tx = e.pageX
+    const ty = e.pageY
 
+    
     state.previousTime = ~~(state.previousTime * 1000) / 1000
-    // 時間
+
+    // 経過時間(秒)
     const t = ~~(((new Date().getTime() + '').slice(5)|0) - state.previousTime * 1000) / 1000
 
-    // ユニークID
-    const uniqueId = state.uniqueId
 
     // 結果
     const result = {
@@ -36,7 +39,8 @@ export const mutations = {
       py,
       tx,
       ty,
-      t
+      t,
+
     }
 
     // 次の座標をランダムに更新
@@ -52,6 +56,7 @@ export const mutations = {
     if(state.results.length >= LIMIT){
       this.$router.push('finished')
     }
+
   }
 }
 
