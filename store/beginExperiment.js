@@ -1,4 +1,10 @@
+/**
+ * 実験開始時の座標を決定する
+ */
+
 export const actions = {
+
+  // operationの「実験をはじめる」を押した瞬間に発火
   init({commit, rootState}){
     commit('setInitialStatus', rootState)
   }

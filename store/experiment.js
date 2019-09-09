@@ -8,11 +8,11 @@ export const mutations = {
     // 座標を何分割するか
     const DIVISIONS = 20
 
-    // デバイスの大きさ
+    // デバイスの大きさ d = device
     const dx = window.outerWidth
     const dy = window.outerHeight
 
-    // 画面に表示されている位置 p = position
+    // 画面上で●が表示されている位置 p = position
     const px = state.positionXpixel
     const py = state.positionYpixel
 
@@ -45,8 +45,10 @@ export const mutations = {
     
     state.results = [... state.results, result]
 
+    // 経過時間を追加
     state.previousTime += t
 
+    // 指定された回数タップしたら実験を終了
     if(state.results.length >= LIMIT){
       this.$router.push('finished')
     }

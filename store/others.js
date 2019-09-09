@@ -10,11 +10,13 @@ export const mutations = {
 
 }
 
+
 export const getters = {
   json: (_, __, rootState) =>
     JSON.stringify(rootState.experiment.results),
   
-  transform: (_, __, rootState) =>
+  // ●のCSSを定義
+  css: (_, __, rootState) =>
     ({
       transform: `
         translateX(${rootState.experiment.positionXpixel}px)

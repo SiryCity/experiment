@@ -1,3 +1,6 @@
+/**
+ * 進捗によりページ遷移を操作
+ */
 
 export const state = () =>
   ({
@@ -7,7 +10,7 @@ export const state = () =>
      *  index       最初の画面
      *  consent     実験に同意していない
      *  operation   実験に同意し、操作を説明
-     *  measurement  実験に同意し、実験が開始した
+     *  measurement 実験に同意し、実験が開始した
      *  finished    実験終了
      *  thanks      実験結果送信済み
      */

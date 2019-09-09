@@ -10,7 +10,7 @@
   div.measurement
     div.measurement__hitarea(
       @click='readyToTap'
-      :style='$store.getters["others/transform"]'
+      :style='$store.getters["others/css"]'
     )
 </template>
 
