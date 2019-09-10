@@ -10,6 +10,11 @@ export const actions = {
     
     // 実験結果の巨大なJSONを代入
     const RESULTS = rootState.experiment.results
-    console.log(RESULTS)
+
+    firebase.firestore().collection('results').add({
+      ... RESULTS
+    })
+
+    console.dir(RESULTS)
   }
 }

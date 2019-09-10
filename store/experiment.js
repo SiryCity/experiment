@@ -3,7 +3,7 @@ export const mutations = {
   tapped(state, e){
 
     // 何回タップしたらゲームが終了か
-    const LIMIT = 30
+    const LIMIT = 3
 
     // 座標を何分割するか
     const DIVISIONS = 21
@@ -11,6 +11,9 @@ export const mutations = {
     // ユニークID
     const uniqueId = state.uniqueId
 
+    // 何回目か
+    const n = state.results.length + 1
+    
     // デバイスの大きさ d = device
     const dx = window.outerWidth
     const dy = window.outerHeight
@@ -35,6 +38,7 @@ export const mutations = {
     // 結果
     const result = {
       uniqueId,
+      n,
       dx,
       dy,
       px,
