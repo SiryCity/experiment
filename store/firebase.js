@@ -16,5 +16,25 @@ export const actions = {
     })
 
     console.dir(RESULTS)
+  },
+
+  async select(){
+
+    const DOCUMENTS = await firebase.firestore().collection('results').get()
+
+    let ITERABLE_DOCUMENTS = []
+
+    DOCUMENTS.forEach(doc => ITERABLE_DOCUMENTS.push(doc.data()))
+
+    // RESULTS は全ての結果を1つの配列にしたもの
+    const RESULTS = ITERABLE_DOCUMENTS.reduce((pre, cur) =>
+      [ 
+        ... pre,
+        ... Object.entries(cur).map(v => v[1])
+      ]
+    , [])
+
+    console.dir(RESULTS)
+
   }
 }

@@ -13,9 +13,7 @@ export const mutations = {
 
 
 export const getters = {
-  json: (_, __, {experiment}) =>
-    JSON.stringify(experiment.results),
-  
+
   // ●のCSSを定義
   css: (_, __, {experiment}) =>
     ({
