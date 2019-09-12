@@ -23,8 +23,10 @@ export const mutations = {
     experiment.previousTime = ~~((new Date().getTime() + '').slice(5)|0) / 1000
     experiment.uniqueId = ~~(Math.random() * 1000000)
 
-    experiment.h = ~~(Math.random() * 256)
-    experiment.s = ~~(Math.random() * 101)
-    experiment.l = ~~(Math.random() * 101)
+    experiment.hue = ~~(Math.random() * 256)
+    experiment.saturation = ~~(Math.random() * 101)
+    experiment.llightness = ~~(Math.random() * 101)
+
+    experiment.dominance = null
   },
 }

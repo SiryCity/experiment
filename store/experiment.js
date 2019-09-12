@@ -31,9 +31,13 @@ export const mutations = {
     // 経過時間(秒)
     const t = ~~(((new Date().getTime() + '').slice(5)|0) - state.previousTime * 1000) / 1000
 
-    const h = state.h
-    const s = state.s
-    const l = state.l
+    // HSL
+    const h = state.hue
+    const s = state.saturation
+    const l = state.lightness
+
+    // 利き
+    const d = state.dominance
 
     // 結果
     const result = {
@@ -49,6 +53,7 @@ export const mutations = {
       h,
       s,
       l,
+      d,
     }
 
     // 計測結果を代入
@@ -59,9 +64,9 @@ export const mutations = {
     state.translateY = dy / DIVISIONS * ~~(Math.random() * DIVISIONS)
     
     // 次の色をランダムに更新
-    state.h = ~~(Math.random() * 256)
-    state.s = ~~(Math.random() * 101)
-    state.l = ~~(Math.random() * 101)
+    state.hue = ~~(Math.random() * 256)
+    state.saturation = ~~(Math.random() * 101)
+    state.lightness = ~~(Math.random() * 101)
 
 
     // 経過時間を追加
@@ -78,12 +83,13 @@ export const mutations = {
 
 export const state = () =>
   ({
+    uniqueId: null,
     translateX: 0,
     translateY: 0,
-    h: 0,
-    s: 0,
-    l: 0,
     previousTime: 0,
-    uniqueId: null,
+    hue: 0,
+    saturation: 0,
+    lightness: 0,
+    dominance: null,
     results: [],
   })
