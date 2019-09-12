@@ -21,7 +21,7 @@ export const getters = {
         translateX(${experiment.translateX}px)
         translateY(${experiment.translateY}px)
       `,
-      background: `hsl(${experiment.h},${experiment.s}%,${experiment.l}%)`
+      background: `hsl(${experiment.hue},${experiment.saturation}%,${experiment.lightness}%)`
     }),
 
   calculateResults(_, __, rootState){
