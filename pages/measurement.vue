@@ -8,7 +8,7 @@
 -->
 <template lang="pug">
   div.measurement(
-    @click='readyToTap'
+    @click='touch'
   )
     div.measurement__circle(
       :style='$store.getters["others/css"]'
@@ -22,8 +22,8 @@ export default {
     NextButton
   },
   methods: {
-    readyToTap(e){
-      this.$store.dispatch('experiment/tapped', e)
+    touch(e){
+      this.$store.dispatch('experiment/touched', e)
     }
   },
   mounted(){

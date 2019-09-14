@@ -1,29 +1,38 @@
 export const actions = {
-  tapped({commit}, e){
-    commit('tapped', e)
-    commit('set', e)
+  // 「実験をはじめる」を押した時
+  init({commit}){
+    commit('setInitialState')
+    commit('setNextState')
+  },
+  // 画面をタッチした時
+  touched({commit}, e){
+    commit('resisterResult', e)
+    commit('setNextState')
   }
 }
 
+// 何回タッチしたらゲームが終了か
+const LIMIT = 3
+
+// 座標を何分割するか
+const DIVISIONS = 21
+
 export const mutations = {
 
-  tapped(state, e){
-
-    // 何回タップしたらゲームが終了か
-    const LIMIT = 3
-
-    // 座標を何分割するか
-    const DIVISIONS = 21
+  resisterResult(state, e){
 
     // ユニークID
     const u = state.uniqueId
 
+    // 利き
+    const d = state.dominance
+
     // 何回目か
     const n = state.times
-    
+
     // デバイスの大きさ d = device
-    const dx = window.outerWidth
-    const dy = window.outerHeight
+    const dx = state.outerWidth
+    const dy = state.outerHeight
 
     // 画面上で●が表示されている位置 p = position
     const px = ~~state.translateX
@@ -41,12 +50,11 @@ export const mutations = {
     const s = state.saturation
     const l = state.lightness
 
-    // 利き
-    const d = state.dominance
 
     // 結果
     const result = {
       u,
+      d,
       n,
       dx,
       dy,
@@ -58,17 +66,39 @@ export const mutations = {
       h,
       s,
       l,
-      d,
     }
-
-    state.times++
 
     // 計測結果を代入
     state.results = [... state.results, result]
 
+  },
+
+  setInitialState(state){
+
+    // ユニークIDを決定
+    state.uniqueId = ~~(Math.random() * 1000000)
+
+    // 利き手を決定
+    state.dominance = null
+
+    // 画面の幅と高さを決定
+    state.outerWidth = window.outerWidth
+    state.outerHeight = window.outerHeight
+  },
+  setNextState(state){
+
+    // 指定された回数タップしたら実験を終了
+    if(state.times > LIMIT - 1){
+      this.$router.push('finished')
+      return
+    }
+
+    // 回数を加算
+    state.times++
+
     // 次の座標をランダムに更新
-    state.translateX = dx / DIVISIONS * ~~(Math.random() * DIVISIONS)
-    state.translateY = dy / DIVISIONS * ~~(Math.random() * DIVISIONS)
+    state.translateX = state.outerWidth / DIVISIONS * ~~(Math.random() * DIVISIONS)
+    state.translateY = state.outerHeight / DIVISIONS * ~~(Math.random() * DIVISIONS)
     
     // 次の色をランダムに更新
     state.hue = ~~(Math.random() * 256)
@@ -78,28 +108,21 @@ export const mutations = {
     // 経過時間を追加
     state.previousTime += ~~(((new Date().getTime() + '').slice(5)|0) - (~~(state.previousTime * 1000) / 1000) * 1000) / 1000
 
-    // 指定された回数タップしたら実験を終了
-    if(state.times >= LIMIT){
-      this.$router.push('finished')
-    }
-  },
-
-  set(state, e){
-console.info(42)
   }
 }
 
-
 export const state = () =>
   ({
-    times: 0,
     uniqueId: null,
+    dominance: null,
+    times: 0,
+    outerWidth: 0,
+    outerHeight: 0,
     translateX: 0,
     translateY: 0,
     previousTime: 0,
     hue: 0,
     saturation: 0,
-    lightness: 0,
-    dominance: null,
+    lightness: 100,
     results: [],
   })

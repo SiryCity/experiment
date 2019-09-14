@@ -19,7 +19,7 @@ export default {
       if(to === '/consent') return
       if(to === '/operation') return
       // 実験開始時に●の初期値をランダムに定義
-      if(to === '/measurement')  this.$store.dispatch("beginExperiment/init")
+      if(to === '/measurement')  this.$store.dispatch('experiment/init')
       if(to === '/finished') return
       // 「送る」ボタンで実験結果をcloud firestoreに保存
       if(to === '/thanks') this.$store.dispatch("firebase/insert")
