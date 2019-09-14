@@ -1,13 +1,32 @@
+<!--
+  index       最初に来るところ、「実験を始める」程度のことだけ書く
+  consent     実験の同意をとる
+  operation   実験の操作方法を教える
+  measurement 実験開始 この画面でデータの計測を行う
+  finished    終わったことを伝える 計測データの送信ボタンを置く
+  thanks      お礼を言う もう一度計測するボタンを置く
+-->
 <template lang="pug">
   div.next-button
-      nuxt-link.next-button__button(v-if='post==="finish"' :to='to' @click.native='$store.dispatch("firebase/insert")') {{text}}
-      nuxt-link.next-button__button(v-if='post==="begin"' :to='to' @click.native='$store.dispatch("beginExperiment/init")') {{text}}
-      nuxt-link.next-button__button(v-if='!post' :to='to') {{text}}
+      nuxt-link.next-button__button(:to='to' @click.native='clickNative(to)') {{text}}
+      
 </template>
-
+ 
 <script>
 export default {
-  props: ['to', 'text', 'post']
+  props: ['to', 'text'],
+  methods: {
+    clickNative(to){
+      if(to === '/consent') return
+      if(to === '/operation') return
+      // 実験開始時に●の初期値をランダムに定義
+      if(to === '/measurement')  this.$store.dispatch("beginExperiment/init")
+      if(to === '/finished') return
+      // 「送る」ボタンで実験結果をcloud firestoreに保存
+      if(to === '/thanks') this.$store.dispatch("firebase/insert")
+      if(to === '/') return
+    }
+  }
 }
 </script>
 
