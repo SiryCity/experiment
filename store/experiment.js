@@ -19,58 +19,39 @@ const DIVISIONS = 21
 
 export const mutations = {
 
+  // 結果をresults[]に追加
   resisterResult(state, e){
+    state.results.push({
+      // ユニークID
+      u: state.uniqueId,
 
-    // ユニークID
-    const u = state.uniqueId
+      //利き
+      d: state.dominance,
 
-    // 利き
-    const d = state.dominance
+      // 何回目か
+      n: state.times,
 
-    // 何回目か
-    const n = state.times
+      // 画面の大きさ d = display
+      dx: state.outerWidth,
+      dy: state.outerHeight,
 
-    // デバイスの大きさ d = device
-    const dx = state.outerWidth
-    const dy = state.outerHeight
+      // 画面上で●が表示されている位置 p = position
+      px: ~~state.translateX,
+      py: ~~state.translateY,
 
-    // 画面上で●が表示されている位置 p = position
-    const px = ~~state.translateX
-    const py = ~~state.translateY
+      // 被験者がタッチした位置 t = touched
+      tx: e.pageX,
+      ty: e.pageY,
 
-    // 被験者がタップした位置 t = tapped
-    const tx = e.pageX
-    const ty = e.pageY
+      // 経過時間(秒)
+      t: ~~(((new Date().getTime() + '').slice(5)|0) - (~~(state.previousTime * 1000) / 1000) * 1000) / 1000,
 
-    // 経過時間(秒)
-    const t = ~~(((new Date().getTime() + '').slice(5)|0) - (~~(state.previousTime * 1000) / 1000) * 1000) / 1000
+      // HSL
+      h: state.hue,
+      s: state.saturation,
+      l: state.lightness,
 
-    // HSL
-    const h = state.hue
-    const s = state.saturation
-    const l = state.lightness
-
-
-    // 結果
-    const result = {
-      u,
-      d,
-      n,
-      dx,
-      dy,
-      px,
-      py,
-      tx,
-      ty,
-      t,
-      h,
-      s,
-      l,
-    }
-
-    // 計測結果を代入
-    state.results = [... state.results, result]
-
+    })
   },
 
   setInitialState(state){
@@ -84,6 +65,7 @@ export const mutations = {
     // 画面の幅と高さを決定
     state.outerWidth = window.outerWidth
     state.outerHeight = window.outerHeight
+
   },
   setNextState(state){
 
