@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     readyToTap(e){
-      this.$store.commit('experiment/tapped', e)
+      this.$store.dispatch('experiment/tapped', e)
     }
   },
   mounted(){

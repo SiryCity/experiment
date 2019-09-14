@@ -1,3 +1,10 @@
+export const actions = {
+  tapped({commit}, e){
+    commit('tapped', e)
+    commit('set', e)
+  }
+}
+
 export const mutations = {
 
   tapped(state, e){
@@ -9,27 +16,25 @@ export const mutations = {
     const DIVISIONS = 21
 
     // ユニークID
-    const uniqueId = state.uniqueId
+    const u = state.uniqueId
 
     // 何回目か
-    const n = state.results.length + 1
+    const n = state.times
     
     // デバイスの大きさ d = device
     const dx = window.outerWidth
     const dy = window.outerHeight
 
     // 画面上で●が表示されている位置 p = position
-    const px = state.translateX
-    const py = state.translateY
+    const px = ~~state.translateX
+    const py = ~~state.translateY
 
     // 被験者がタップした位置 t = tapped
     const tx = e.pageX
     const ty = e.pageY
 
-    state.previousTime = ~~(state.previousTime * 1000) / 1000
-
     // 経過時間(秒)
-    const t = ~~(((new Date().getTime() + '').slice(5)|0) - state.previousTime * 1000) / 1000
+    const t = ~~(((new Date().getTime() + '').slice(5)|0) - (~~(state.previousTime * 1000) / 1000) * 1000) / 1000
 
     // HSL
     const h = state.hue
@@ -41,7 +46,7 @@ export const mutations = {
 
     // 結果
     const result = {
-      uniqueId,
+      u,
       n,
       dx,
       dy,
@@ -56,6 +61,8 @@ export const mutations = {
       d,
     }
 
+    state.times++
+
     // 計測結果を代入
     state.results = [... state.results, result]
 
@@ -68,21 +75,24 @@ export const mutations = {
     state.saturation = ~~(Math.random() * 101)
     state.lightness = ~~(Math.random() * 101)
 
-
     // 経過時間を追加
-    state.previousTime += t
+    state.previousTime += ~~(((new Date().getTime() + '').slice(5)|0) - (~~(state.previousTime * 1000) / 1000) * 1000) / 1000
 
     // 指定された回数タップしたら実験を終了
-    if(state.results.length >= LIMIT){
+    if(state.times >= LIMIT){
       this.$router.push('finished')
     }
+  },
 
+  set(state, e){
+console.info(42)
   }
 }
 
 
 export const state = () =>
   ({
+    times: 0,
     uniqueId: null,
     translateX: 0,
     translateY: 0,

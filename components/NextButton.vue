@@ -9,7 +9,6 @@
 <template lang="pug">
   div.next-button
       nuxt-link.next-button__button(:to='to' @click.native='clickNative(to)') {{text}}
-      
 </template>
  
 <script>
