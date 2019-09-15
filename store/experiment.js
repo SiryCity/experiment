@@ -1,7 +1,4 @@
 export const actions = {
-  consent({commit}, e){
-    commit('setInitialState', e)
-  },
   // 「実験をはじめる」を押した時
   init({commit}){
     commit('setInitialState')
@@ -57,19 +54,23 @@ export const mutations = {
     })
   },
 
-  setInitialState(state, e){
+  setDominance(state, dominance){
+
+    // 利き手を決定
+    state.dominance = dominance
+  },
+
+  setInitialState(state){
 
     // ユニークIDを決定
     state.uniqueId = ~~(Math.random() * 1000000)
-
-    // 利き手を決定
-    state.dominance = null
 
     // 画面の幅と高さを決定
     state.outerWidth = window.outerWidth
     state.outerHeight = window.outerHeight
 
   },
+  
   setNextState(state){
 
     // 指定された回数タップしたら実験を終了

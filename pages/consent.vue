@@ -10,6 +10,11 @@
   div.consent
     h1 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     p test
+    input#left(type='radio' name='dominance' value='left' v-model='dominance' style={"display": "none"})
+    label.radio(for='left' :class='{"radio--selected": $store.state.experiment.dominance === "left"}') 左手
+    input#right(type='radio' name='dominance' value='right' v-model='dominance' style={"display": "none"})
+    label.radio(for='right' :class='{"radio--selected": $store.state.experiment.dominance === "right"}') 右手
+
     next-button(to='/operation' text='同意して実験方法を見る')
 </template>
 
@@ -22,6 +27,16 @@ export default {
   mounted(){
     this.$store.dispatch('redirect/redirection', 'consent')
   },
+  computed: {
+    dominance: {
+      get() {
+        return this.$store.state.experiment.dominance
+      },
+      set(dominance) {
+        this.$store.commit('experiment/setDominance', dominance)
+      }
+    }
+  }
 }
 </script>
 
@@ -29,4 +44,22 @@ export default {
 .consent
   width 95%
   margin 60px 2.5%
+
+.radio
+  width 45%
+  height 50px
+  line-height 44px
+  display inline-block
+  color #2073f7
+  font-weight bold
+  border 4px solid #2073f7
+  text-decoration none 
+  text-align center
+  border-radius 5px
+  margin 50px 2.5%
+  box-sizing border-box
+
+.radio--selected
+  color white
+  background #2073f7
 </style>

@@ -9,12 +9,9 @@ export const mutations = {
       `${window.outerHeight}px`
     )
   },
+
 }
 
-export const state = () =>
-  ({
-    isSelectedDominance: false
-  })
 
 export const getters = {
 

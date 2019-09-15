@@ -8,14 +8,18 @@
 -->
 <template lang="pug">
   div.next-button
-      nuxt-link.next-button__button(
-        v-if='to !== "/operation" || $store.state.others.isSelectedDominance'
-        :to='to'
-        @click.native='clickNative(to)'
-      ) {{text}}
-      div.next-button__button.next-button__button--disable(
-        v-else
-      ) {{text}}
+
+    //- 通常時のボタン
+    nuxt-link.next-button__button(
+      v-if='to !== "/operation" || $store.state.experiment.dominance'
+      :to='to'
+      @click.native='clickNative(to)'
+    ) {{text}}
+    
+    //- 利き手が選択されていない時のボタン
+    div.next-button__button.next-button__button--disable(
+      v-else
+    ) {{text}}
 </template>
  
 <script>
