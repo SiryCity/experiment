@@ -11,6 +11,10 @@ export const mutations = {
   },
 }
 
+export const state = () =>
+  ({
+    isSelectedDominance: false
+  })
 
 export const getters = {
 
@@ -23,8 +27,4 @@ export const getters = {
       `,
       background: `hsl(${experiment.hue},${experiment.saturation}%,${experiment.lightness}%)`
     }),
-
-  calculateResults(_, __, rootState){
-
-  }
 }

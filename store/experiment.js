@@ -1,4 +1,7 @@
 export const actions = {
+  consent({commit}, e){
+    commit('setInitialState', e)
+  },
   // 「実験をはじめる」を押した時
   init({commit}){
     commit('setInitialState')
@@ -54,7 +57,7 @@ export const mutations = {
     })
   },
 
-  setInitialState(state){
+  setInitialState(state, e){
 
     // ユニークIDを決定
     state.uniqueId = ~~(Math.random() * 1000000)

@@ -8,7 +8,14 @@
 -->
 <template lang="pug">
   div.next-button
-      nuxt-link.next-button__button(:to='to' @click.native='clickNative(to)') {{text}}
+      nuxt-link.next-button__button(
+        v-if='to !== "/operation" || $store.state.others.isSelectedDominance'
+        :to='to'
+        @click.native='clickNative(to)'
+      ) {{text}}
+      div.next-button__button.next-button__button--disable(
+        v-else
+      ) {{text}}
 </template>
  
 <script>
@@ -45,4 +52,6 @@ export default {
   color white
   text-align center
   border-radius 30px
+.next-button__button--disable
+  opacity .4
 </style>
