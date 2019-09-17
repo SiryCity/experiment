@@ -8,8 +8,12 @@
 -->
 <template lang="pug">
   div.consent
-    h1 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    p test
+    h1 どんな実験ですか？
+    p 「スマホを操作する時の指の動きを観測する実験」です。
+    p 下のような円が画面に表示されるので、ひたすら指でタッチしてください。
+    p タッチの速度、正確性、角度、色との関係、時間帯などを計測します。
+    p 実験結果は学会・研究会等で発表させていただく場合があります。発表の際も、実験結果以外のあなたの情報は一切公表しません。
+    p ただし、スマホを触る手がどちらかだけは教えてください。これは、右手と左手で指の動きが大きく異なるためです。あなたがスマホを触る手は...
     input#left(type='radio' name='dominance' value='left' v-model='dominance' style={"display": "none"})
     label.radio(for='left' :class='{"radio--selected": $store.state.experiment.dominance === "left"}') 左手
     input#right(type='radio' name='dominance' value='right' v-model='dominance' style={"display": "none"})

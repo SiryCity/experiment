@@ -8,8 +8,10 @@
 -->
 <template lang="pug">
   div.index
-    h1 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    p test
+    h1 ご協力ありがとうございました。
+    p 実験に関して、不明点がありましたら以下までお願いいたします。
+    p withhellopro@gmail.com
+    p 実験は1人何回でも参加できます。お時間がございましたら、引き続きご協力のほどお願いいたします。
     next-button(to='/' text='もう一度チャレンジ')
 </template>
 

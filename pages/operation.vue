@@ -8,8 +8,10 @@
 -->
 <template lang="pug">
   div.operation
-    h1 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    p test
+    h1 何をすればよいですか？
+    p 先ほどご説明した通り、下のような円をひたすら指でタッチしてください。全部で100回です。
+    p 画面の回転、リサイズはご遠慮ください。指の動く条件が変わるのを防ぐためです。
+    p 実験中に他の用事ができた場合はスマホを突然切って問題ありません。歩きスマホ等はなさらないよう、お願いいたします。
     next-button(to='/measurement' text='実験をはじめる' post='begin')
 </template>
 

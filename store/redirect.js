@@ -36,7 +36,6 @@ export const actions = {
     commit('updatePageType', currentPageType)
 
 
-
     // 最初の3つを開いたら
     if(
       currentPageType === 'index'

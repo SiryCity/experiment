@@ -7,9 +7,10 @@
   thanks      お礼を言う もう一度計測するボタンを置く
 -->
 <template lang="pug">
-  div.index
-    h1 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    p test
+  div.finished
+    h1 お疲れ様です。
+    p 以下のボタンを押すと実験内容が送信されます。
+    p ※急用ができた、実験内容に不満がある等ございましたら、ここでブラウザを閉じれば実験内容は保存されません。
     next-button(to='/thanks' text='実験結果を送信' post='finish')
 </template>
 

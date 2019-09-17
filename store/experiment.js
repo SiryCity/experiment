@@ -75,6 +75,7 @@ export const mutations = {
 
     // 指定された回数タップしたら実験を終了
     if(state.times > LIMIT - 1){
+      state.times = 0
       this.$router.push('finished')
       return
     }
