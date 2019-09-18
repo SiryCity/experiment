@@ -12,7 +12,7 @@ export const actions = {
 }
 
 // 何回タッチしたらゲームが終了か
-const LIMIT = 3
+const LIMIT = 100
 
 // 座標を何分割するか
 const DIVISIONS = 21

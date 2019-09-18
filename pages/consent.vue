@@ -11,7 +11,11 @@
     h1 どんな実験ですか？
     p 「スマホを操作する時の指の動きを観測する実験」です。
     p 下のような円が画面に表示されるので、ひたすら指でタッチしてください。
-    p タッチの速度、正確性、角度、色との関係、時間帯などを計測します。
+    div.circle-box
+      div.circle-box__circle1
+      div.circle-box__circle2
+      div.circle-box__circle3
+    p タッチをする際の速度、正確性、角度、色との関係、時間帯などを計測します。
     p 実験結果は学会・研究会等で発表させていただく場合があります。発表の際も、実験結果以外のあなたの情報は一切公表しません。
     p ただし、スマホを触る手がどちらかだけは教えてください。これは、右手と左手で指の動きが大きく異なるためです。あなたがスマホを触る手は...
     input#left(type='radio' name='dominance' value='left' v-model='dominance' style={"display": "none"})
@@ -66,4 +70,28 @@ export default {
 .radio--selected
   color white
   background #2073f7
+
+.circle-box
+  width 100%
+  display flex
+  justify-content center
+  margin 15px 0
+.circle-box__circle1
+  width 30px
+  height 30px
+  margin 10px
+  border-radius 50%
+  background orange
+.circle-box__circle2
+  width 30px
+  height 30px
+  margin 10px
+  border-radius 50%
+  background cyan
+.circle-box__circle3
+  width 30px
+  height 30px
+  margin 10px
+  border-radius 50%
+  background pink
 </style>

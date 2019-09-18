@@ -45,6 +45,8 @@ export default {
 .next-button
   width 100%
   height 80px
+  margin-top 15px
+
 .next-button__button
   width 90%
   height 60px

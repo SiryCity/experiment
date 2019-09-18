@@ -10,6 +10,11 @@
   div.operation
     h1 何をすればよいですか？
     p 先ほどご説明した通り、下のような円をひたすら指でタッチしてください。全部で100回です。
+
+    div.circle-box
+      div.circle-box__circle1
+      div.circle-box__circle2
+      div.circle-box__circle3
     p 画面の回転、リサイズはご遠慮ください。指の動く条件が変わるのを防ぐためです。
     p 実験中に他の用事ができた場合はスマホを突然切って問題ありません。歩きスマホ等はなさらないよう、お願いいたします。
     next-button(to='/measurement' text='実験をはじめる' post='begin')
@@ -31,4 +36,29 @@ export default {
 .operation
   width 90%
   margin 60px 5%
+
+
+.circle-box
+  width 100%
+  display flex
+  justify-content center
+  margin 15px 0
+.circle-box__circle1
+  width 10px
+  height 10px
+  margin 10px
+  border-radius 50%
+  background orange
+.circle-box__circle2
+  width 10px
+  height 10px
+  margin 10px
+  border-radius 50%
+  background cyan
+.circle-box__circle3
+  width 10px
+  height 10px
+  margin 10px
+  border-radius 50%
+  background pink
 </style>

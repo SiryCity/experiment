@@ -38,11 +38,9 @@ p
   --static100vh 100vh
 body
   margin 0
+#root
   width 100vw
   height var(--static100vh)
-#root
-  width inherit
-  height inherit
   position relative
   overflow-x hidden
 
