@@ -46,7 +46,7 @@ export default {
   width 100%
   height 80px
 .next-button__button
-  width 95%
+  width 90%
   height 60px
   line-height 60px
   margin 0 auto

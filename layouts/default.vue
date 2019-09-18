@@ -34,13 +34,15 @@ html
 h1
 p
   word-wrap break-word
-body
-  margin 0
 :root
   --static100vh 100vh
-#root
+body
+  margin 0
   width 100vw
   height var(--static100vh)
+#root
+  width inherit
+  height inherit
   position relative
   overflow-x hidden
 

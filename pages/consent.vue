@@ -46,8 +46,8 @@ export default {
 
 <style lang="stylus" scoped>
 .consent
-  width 95%
-  margin 60px 2.5%
+  width 90%
+  margin 60px 5%
 
 .radio
   width 45%
