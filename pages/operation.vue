@@ -44,20 +44,20 @@ export default {
   justify-content center
   margin 15px 0
 .circle-box__circle1
-  width 10px
-  height 10px
+  width 30px
+  height 30px
   margin 10px
   border-radius 50%
   background orange
 .circle-box__circle2
-  width 10px
-  height 10px
+  width 30px
+  height 30px
   margin 10px
   border-radius 50%
   background cyan
 .circle-box__circle3
-  width 10px
-  height 10px
+  width 30px
+  height 30px
   margin 10px
   border-radius 50%
   background pink

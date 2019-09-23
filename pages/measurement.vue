@@ -41,8 +41,8 @@ export default {
   background #fff
 
 .measurement__circle
-  width 5vmin
-  height 5vmin
+  width 10vmin
+  height 10vmin
   background #f54242
   border-radius 50%
 </style>

@@ -19,8 +19,8 @@ export const getters = {
   css: (_, __, {experiment}) =>
     ({
       transform: `
-        translateX(${experiment.translateX}px)
-        translateY(${experiment.translateY}px)
+        translateX(calc(${experiment.translateX}px - 5vmin))
+        translateY(calc(${experiment.translateY}px - 5vmin))
       `,
       background: `hsl(${experiment.hue},${experiment.saturation}%,${experiment.lightness}%)`
     }),
