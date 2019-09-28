@@ -36,5 +36,7 @@ export const actions = {
 
     console.dir(RESULTS)
 
+    console.dir(RESULTS.length)
+
   }
 }
