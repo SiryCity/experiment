@@ -18,25 +18,41 @@ export const actions = {
     console.dir(RESULTS)
   },
 
-  async select(){
+  async select({commit}){
 
-    const DOCUMENTS = await firebase.firestore().collection('results').get()
+    console.dir('clicked')
 
-    let ITERABLE_DOCUMENTS = []
+    const rawResults = await firebase.firestore().collection('results').get()
 
-    DOCUMENTS.forEach(doc => ITERABLE_DOCUMENTS.push(doc.data()))
+    let results = []
 
-    // RESULTS は全ての結果を1つの配列にしたもの
-    const RESULTS = ITERABLE_DOCUMENTS.reduce((pre, cur) =>
+    rawResults.forEach(doc => results.push(doc.data()))
+
+    commit('writeResults', results)
+  }
+}
+
+export const mutations = {
+  writeResults(state, results){
+
+    // resultsInARow は全ての結果を1つの配列にしたもの
+    const resultsInARow = results.reduce((pre, cur) =>
       [ 
         ... pre,
         ... Object.entries(cur).map(v => v[1])
       ]
     , [])
 
-    console.dir(RESULTS)
+    state.results = results
+    state.resultsInARow = resultsInARow
 
-    console.dir(RESULTS.length)
-
+    console.dir(state.results)
+    console.dir(state.resultsInARow)
   }
 }
+
+export const state = () =>
+({
+  results: null,
+  resultsInARow: null,
+})
