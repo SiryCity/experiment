@@ -48,7 +48,7 @@ export const mutations = {
 
     console.dir(state.results)
     console.dir(state.resultsInARow)
-  }
+  },
 }
 
 export const state = () =>

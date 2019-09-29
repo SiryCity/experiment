@@ -2,5 +2,17 @@
 計算結果を取得
 -->
 <template lang="pug">
-  div(@click='$store.dispatch("firebase/select")') 全ての結果
+  div(v-if='$store.state.firebase.results === null') データ取得中...
+  div(v-else)
+    div {{$store.state.firebase.results.length}} 
+    div {{$store.state.firebase.resultsInARow.length}} 
 </template>
+
+
+<script>
+export default {
+  mounted(){
+    this.$store.dispatch('firebase/select')
+  }
+}
+</script>
