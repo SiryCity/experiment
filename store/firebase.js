@@ -32,27 +32,26 @@ export const actions = {
   }
 }
 
+// 全ての結果を1つの配列にする
+const makeResultsToInALine = results =>
+  results.reduce((pre, cur) =>
+    [ 
+      ... pre,
+      ... Object.entries(cur).map(v => v[1])
+    ]
+  , [])
+
 export const mutations = {
   writeResults(state, results){
 
-    // resultsInARow は全ての結果を1つの配列にしたもの
-    const resultsInARow = results.reduce((pre, cur) =>
-      [ 
-        ... pre,
-        ... Object.entries(cur).map(v => v[1])
-      ]
-    , [])
-
     state.results = results
-    state.resultsInARow = resultsInARow
-
+    
     console.dir(state.results)
-    console.dir(state.resultsInARow)
+    console.dir(makeResultsToInALine(state.results))
   },
 }
 
 export const state = () =>
 ({
-  results: null,
-  resultsInARow: null,
+  results: null
 })
