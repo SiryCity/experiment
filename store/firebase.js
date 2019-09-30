@@ -2,7 +2,9 @@
  * 実験結果をfirestoreに保存
  */
 
-import firebase from 'firebase/app';
+import firebase from 'firebase/app'
+import Chart from 'chart.js'
+
 
 export const actions = {
 
@@ -28,9 +30,57 @@ export const actions = {
 
     rawResults.forEach(doc => results.push(doc.data()))
 
-    commit('writeResults', results)
+    commit('renderGraph', results)
   }
 }
+
+
+export const mutations = {
+  renderGraph(_, results){
+
+    console.dir(results)
+    console.dir(makeResultsToInALine(results))
+
+    ~c `myChart` `line`
+    ({
+      labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+      datasets:
+        [
+          {
+            label: 'apples',
+            data: [12, 19, 3, 17, 6, 3, 7],
+            backgroundColor: "rgba(153,255,51,0.4)"
+          },
+          {
+            label: 'oranges',
+            data: [2, 29, 5, 5, 2, 3, 10],
+            backgroundColor: "rgba(255,153,0,0.4)"
+          }
+        ]
+    })
+
+  },
+}
+
+// chartレンダリングのラッパー
+const c = id =>
+  ([type]) =>
+    data => 
+      new Chart(
+        ctx([id[0]]),
+        {
+          type,
+          data
+        }
+      )
+
+//canvas取得
+const ctx = idName =>
+  id([[idName]]).getContext('2d')
+
+// id取得
+const id = id =>
+  document.getElementById(id[0])
 
 // 全ての結果を1つの配列にする
 const makeResultsToInALine = results =>
@@ -40,18 +90,3 @@ const makeResultsToInALine = results =>
       ... Object.entries(cur).map(v => v[1])
     ]
   , [])
-
-export const mutations = {
-  writeResults(state, results){
-
-    state.results = results
-    
-    console.dir(state.results)
-    console.dir(makeResultsToInALine(state.results))
-  },
-}
-
-export const state = () =>
-({
-  results: null
-})

@@ -2,11 +2,9 @@
 計算結果を取得
 -->
 <template lang="pug">
-  div(v-if='$store.state.firebase.results === null') データ取得中...
-  div(v-else)
-    div {{$store.state.firebase.results.length}} 
+  div
+    canvas#myChart.chart
 </template>
-
 
 <script>
 export default {
@@ -15,3 +13,10 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+.chart
+  width 100vw
+  height 100vh
+  margin 30px 0
+</style>
