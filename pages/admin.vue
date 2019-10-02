@@ -4,6 +4,7 @@
 <template lang="pug">
   div
     canvas#myChart.chart
+    canvas#Scatter.chart
 </template>
 
 <script>
