@@ -5,6 +5,7 @@
   div
     canvas#myChart.chart
     canvas#Scatter.chart
+    canvas#scatter--time
 </template>
 
 <script>
