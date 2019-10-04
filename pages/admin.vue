@@ -3,9 +3,9 @@
 -->
 <template lang="pug">
   div
+    canvas#scatter--time
     canvas#myChart.chart
     canvas#Scatter.chart
-    canvas#scatter--time
 </template>
 
 <script>
@@ -19,6 +19,6 @@ export default {
 <style lang="stylus" scoped>
 .chart
   width 100vw
-  height 100vh
+  height auto
   margin 30px 0
 </style>
