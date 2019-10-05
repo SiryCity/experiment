@@ -3,9 +3,12 @@
 -->
 <template lang="pug">
   div
-    canvas#scatter--time
-    canvas#myChart.chart
-    canvas#Scatter.chart
+    canvas#scatter--n-time
+    canvas#scatter--h-time
+    canvas#scatter--l-time
+    canvas#scatter--s-time
+    //- canvas#myChart.chart
+    //- canvas#Scatter.chart
 </template>
 
 <script>

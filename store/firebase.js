@@ -44,17 +44,74 @@ export const mutations = {
     console.dir(resultsInALine)
 
     ~chart
-    `scatter--time`
+    `scatter--n-time`
     `scatter`
     ({
       datasets:
       [
         {
-          data: resultsInALine.map(v => ({x: v.n, y: v.t < 0 ? 0 : v.t >1 ? 1 : v.t})),
+          data: resultsInALine.map(v =>
+            ({
+              x: v.n,
+              y: v.t < 0 ? 0 : v.t > 2 ? 2 : v.t
+            })
+          )
         }
       ]
     })
 
+    ~chart
+    `scatter--h-time`
+    `scatter`
+    ({
+      datasets:
+      [
+        {
+          data: resultsInALine.map(v =>
+            ({
+              x: v.h,
+              y: v.t < 0 ? 0 : v.t > 2 ? 2 : v.t
+            })
+          )
+        }
+      ]
+    })
+
+    ~chart
+    `scatter--l-time`
+    `scatter`
+    ({
+      datasets:
+      [
+        {
+          data: resultsInALine.map(v =>
+            ({
+              x: v.l,
+              y: v.t < 0 ? 0 : v.t > 2 ? 2 : v.t
+            })
+          )
+        }
+      ]
+    })
+
+    ~chart
+    `scatter--s-time`
+    `scatter`
+    ({
+      datasets:
+      [
+        {
+          data: resultsInALine.map(v =>
+            ({
+              x: v.s,
+              y: v.t < 0 ? 0 : v.t > 2 ? 2 : v.t
+            })
+          )
+        }
+      ]
+    })
+
+    /*
     ~chart `myChart` `line`
     ({
       labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
@@ -88,6 +145,7 @@ export const mutations = {
           backgroundColor: 'RGBA(115,255,25, 1)',
         }]
     })
+    */
 
   },
 }
