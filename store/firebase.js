@@ -42,6 +42,11 @@ export const mutations = {
 
     console.dir(results)
     console.dir(resultsInALine)
+    //alert(resultsInALine.filter(e => e.v && e.v === 2 ).length / 100)
+    //alert([
+    //  resultsInALine.filter(e => e.d === 'right' ).length,
+    //  resultsInALine.filter(e => e.d === 'left' ).length,
+    //])
 
     ~chart
     `scatter--n-time`
@@ -50,6 +55,7 @@ export const mutations = {
       datasets:
       [
         {
+          label: 'タッチ回数と所要時間',
           data: resultsInALine.map(v =>
             ({
               x: v.n,
@@ -67,6 +73,7 @@ export const mutations = {
       datasets:
       [
         {
+          label: '色相と所要時間',
           data: resultsInALine.map(v =>
             ({
               x: v.h,
@@ -84,6 +91,7 @@ export const mutations = {
       datasets:
       [
         {
+          label: '明度と所要時間',
           data: resultsInALine.map(v =>
             ({
               x: v.l,
@@ -101,10 +109,119 @@ export const mutations = {
       datasets:
       [
         {
+          label: '彩度と所要時間',
           data: resultsInALine.map(v =>
             ({
               x: v.s,
               y: v.t < 0 ? 0 : v.t > 2 ? 2 : v.t
+            })
+          )
+        }
+      ]
+    })
+
+    ~chart
+    `scatter--dist-time`
+    `scatter`
+    ({
+      datasets:
+      [
+        {
+          label: 'タッチ誤差と所要時間',
+          data: resultsInALine.map(v =>
+            ({
+              x: Math.sqrt((v.px - v.tx) ^ 2 + (v.py - v.ty) ^ 2),
+              y: v.t < 0 ? 0 : v.t > 5 ? 5 : v.t
+            })
+          )
+        }
+      ]
+    })
+    
+    ~chart
+    `scatter--dist-h`
+    `scatter`
+    ({
+      datasets:
+      [
+        {
+          label: 'タッチ誤差と色相',
+          data: resultsInALine.map(v =>
+            ({
+              x: Math.sqrt((v.px - v.tx) ** 2 + (v.py - v.ty) ** 2),
+              y: v.h
+            })
+          )
+        }
+      ]
+    })
+    
+    ~chart
+    `scatter--dist-s`
+    `scatter`
+    ({
+      datasets:
+      [
+        {
+          label: 'タッチ誤差と明度',
+          data: resultsInALine.map(v =>
+            ({
+              x: Math.sqrt((v.px - v.tx) ** 2 + (v.py - v.ty) ** 2),
+              y: v.s
+            })
+          )
+        }
+      ]
+    })
+    
+    ~chart
+    `scatter--dist-l`
+    `scatter`
+    ({
+      datasets:
+      [
+        {
+          label: 'タッチ誤差と彩度',
+          data: resultsInALine.map(v =>
+            ({
+              x: Math.sqrt((v.px - v.tx) ** 2 + (v.py - v.ty) ** 2),
+              y: v.l
+            })
+          )
+        }
+      ]
+    })
+    
+    ~chart
+    `scatter--px-time`
+    `scatter`
+    ({
+      datasets:
+      [
+        {
+          label: 'タッチ箇所(x軸)と所要時間',
+          data: resultsInALine.map(v =>
+            ({
+              x: (100 / v.dx * v.px) + ~~(Math.random() * 5),
+              y: v.t < 0 ? 0 : v.t > 5 ? 5 : v.t
+            })
+          )
+        }
+      ]
+    })
+    
+    ~chart
+    `scatter--py-time`
+    `scatter`
+    ({
+      datasets:
+      [
+        {
+          label: 'タッチ箇所(y軸)と所要時間',
+          data: resultsInALine.map(v =>
+            ({
+              x: (100 / v.dy * v.py) + ~~(Math.random() * 5),
+              y: v.t < 0 ? 0 : v.t > 5 ? 5 : v.t
             })
           )
         }
