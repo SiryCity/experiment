@@ -52,7 +52,8 @@ export const mutations = {
       l: state.lightness,
       
       //v2はhueのバグ修正(256~360)
-      v: 2,
+      //v3はhue全部(0~360)
+      v: 3,
     })
   },
 
@@ -90,7 +91,7 @@ export const mutations = {
     state.translateY = state.outerHeight / DIVISIONS * ~~(Math.random() * DIVISIONS)
     
     // 次の色をランダムに更新
-    state.hue = (256 + ~~(Math.random() * 105))
+    state.hue = ~~(Math.random() * 361)
     state.saturation = ~~(Math.random() * 101)
     state.lightness = ~~(Math.random() * 101)
 
