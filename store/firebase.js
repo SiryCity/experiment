@@ -6,6 +6,7 @@ import firebase from 'firebase/app'
 import Chart from 'chart.js'
 
 
+
 export const actions = {
 
   async insert({rootState}){
