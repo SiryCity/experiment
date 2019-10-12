@@ -46,6 +46,9 @@ export const mutations = {
         })
       ).filter(v => v.n <= 100 && v.n > 0)
 
+    const ver = v =>
+      v ? v : 1
+    
     console.dir(rawResults)
     console.dir(results)
     
@@ -81,9 +84,13 @@ export const mutations = {
       [
         {
           label: '色相と所要時間',
-          data: results.map(({h, t}) =>
+          data: results.map(({h, t, v}) =>
             ({
-              x: h,
+              x: ver(v) === 1
+              ? ~~(h / 255 * 360)
+              : ver(v) === 2
+              ? ~~((h - 256) / 104 * 360)
+              : h,
               y: t > 2 ? 2 : t
             })
           )
@@ -153,10 +160,16 @@ export const mutations = {
       [
         {
           label: 'タッチ誤差と色相',
-          data: results.map(({px, py, tx, ty, h})=>
+          data: results.map(({px, py, tx, ty, h, v})=>
             ({
-              x: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2),
-              y: h
+              x: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2) > 600
+                ? 600
+                : Math.sqrt((px - tx) ** 2 + (py - ty) ** 2),
+              y: ver(v) === 1
+                ? ~~(h / 255 * 360)
+                : ver(v) === 2
+                ? ~~((h - 256) / 104 * 360)
+                : h,
             })
           )
         }
@@ -173,14 +186,16 @@ export const mutations = {
           label: 'タッチ誤差と明度',
           data: results.map(({px, py, tx, ty, s})=>
             ({
-              x: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2),
+              x: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2) > 600
+              ? 600
+              : Math.sqrt((px - tx) ** 2 + (py - ty) ** 2),
               y: s
             })
           )
         }
       ]
     })
-    
+
     ~chart
     `scatter--dist-l`
     `scatter`
@@ -191,7 +206,9 @@ export const mutations = {
           label: 'タッチ誤差と彩度',
           data: results.map(({px, py, tx, ty, l})=>
             ({
-              x: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2),
+              x: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2) > 600
+              ? 600
+              : Math.sqrt((px - tx) ** 2 + (py - ty) ** 2),
               y: l
             })
           )
@@ -218,6 +235,42 @@ export const mutations = {
     })
     
     ~chart
+    `scatter--px-time--right`
+    `scatter`
+    ({
+      datasets:
+      [
+        {
+          label: 'タッチ箇所(x軸)と所要時間(右利き)',
+          data: results.filter(v => v.d === 'right').map(({dx, px, t}) =>
+            ({
+              x: (100 / dx * px) + ~~(Math.random() * 5),
+              y: t > 5 ? 5 : t
+            })
+          )
+        }
+      ]
+    })
+    
+    ~chart
+    `scatter--px-time--left`
+    `scatter`
+    ({
+      datasets:
+      [
+        {
+          label: 'タッチ箇所(x軸)と所要時間(左利き)',
+          data: results.filter(v => v.d === 'left').map(({dx, px, t}) =>
+            ({
+              x: (100 / dx * px) + ~~(Math.random() * 5),
+              y: t > 5 ? 5 : t
+            })
+          )
+        }
+      ]
+    })
+    
+    ~chart
     `scatter--py-time`
     `scatter`
     ({
@@ -226,6 +279,42 @@ export const mutations = {
         {
           label: 'タッチ箇所(y軸)と所要時間',
           data: results.map(({dy, py, t}) =>
+            ({
+              x: (100 / dy * py) + ~~(Math.random() * 5),
+              y: t > 5 ? 5 : t
+            })
+          )
+        }
+      ]
+    })
+    
+    ~chart
+    `scatter--py-time--right`
+    `scatter`
+    ({
+      datasets:
+      [
+        {
+          label: 'タッチ箇所(y軸)と所要時間(右利き)',
+          data: results.filter(v => v.d === 'right').map(({dy, py, t}) =>
+            ({
+              x: (100 / dy * py) + ~~(Math.random() * 5),
+              y: t > 5 ? 5 : t
+            })
+          )
+        }
+      ]
+    })
+    
+    ~chart
+    `scatter--py-time--left`
+    `scatter`
+    ({
+      datasets:
+      [
+        {
+          label: 'タッチ箇所(y軸)と所要時間(左利き)',
+          data: results.filter(v => v.d === 'left').map(({dy, py, t}) =>
             ({
               x: (100 / dy * py) + ~~(Math.random() * 5),
               y: t > 5 ? 5 : t

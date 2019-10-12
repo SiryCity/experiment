@@ -12,9 +12,11 @@
     canvas#scatter--dist-s
     canvas#scatter--dist-l
     canvas#scatter--px-time
+    canvas#scatter--px-time--right
+    canvas#scatter--px-time--left
     canvas#scatter--py-time
-    //- canvas#myChart.chart
-    //- canvas#Scatter.chart
+    canvas#scatter--py-time--right
+    canvas#scatter--py-time--left
 </template>
 
 <script>
