@@ -57,10 +57,10 @@ export const mutations = {
       [
         {
           label: 'タッチ回数と所要時間',
-          data: resultsInALine.map(v =>
+          data: resultsInALine.map(({n, t}) =>
             ({
-              x: v.n,
-              y: v.t < 0 ? 0 : v.t > 2 ? 2 : v.t
+              x: n,
+              y: t < 0 ? 0 : t > 2 ? 2 : t
             })
           )
         }
@@ -75,10 +75,10 @@ export const mutations = {
       [
         {
           label: '色相と所要時間',
-          data: resultsInALine.map(v =>
+          data: resultsInALine.map(({h, t}) =>
             ({
-              x: v.h,
-              y: v.t < 0 ? 0 : v.t > 2 ? 2 : v.t
+              x: h,
+              y: t < 0 ? 0 : t > 2 ? 2 : t
             })
           )
         }
@@ -93,10 +93,10 @@ export const mutations = {
       [
         {
           label: '明度と所要時間',
-          data: resultsInALine.map(v =>
+          data: resultsInALine.map(({l, t}) =>
             ({
-              x: v.l,
-              y: v.t < 0 ? 0 : v.t > 2 ? 2 : v.t
+              x: l,
+              y: t < 0 ? 0 : t > 2 ? 2 : t
             })
           )
         }
@@ -111,10 +111,10 @@ export const mutations = {
       [
         {
           label: '彩度と所要時間',
-          data: resultsInALine.map(v =>
+          data: resultsInALine.map(({s, t}) =>
             ({
-              x: v.s,
-              y: v.t < 0 ? 0 : v.t > 2 ? 2 : v.t
+              x: s,
+              y: t < 0 ? 0 : t > 2 ? 2 : t
             })
           )
         }
@@ -129,10 +129,10 @@ export const mutations = {
       [
         {
           label: 'タッチ誤差と所要時間',
-          data: resultsInALine.map(v =>
+          data: resultsInALine.map(({px, py, tx, ty, t}) =>
             ({
-              x: Math.sqrt((v.px - v.tx) ^ 2 + (v.py - v.ty) ^ 2),
-              y: v.t < 0 ? 0 : v.t > 5 ? 5 : v.t
+              x: Math.sqrt((px - tx) ^ 2 + (py - ty) ^ 2),
+              y: t < 0 ? 0 : t > 5 ? 5 : t
             })
           )
         }
@@ -147,10 +147,10 @@ export const mutations = {
       [
         {
           label: 'タッチ誤差と色相',
-          data: resultsInALine.map(v =>
+          data: resultsInALine.map(({px, py, tx, ty, h})=>
             ({
-              x: Math.sqrt((v.px - v.tx) ** 2 + (v.py - v.ty) ** 2),
-              y: v.h
+              x: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2),
+              y: h
             })
           )
         }
@@ -165,10 +165,10 @@ export const mutations = {
       [
         {
           label: 'タッチ誤差と明度',
-          data: resultsInALine.map(v =>
+          data: resultsInALine.map(({px, py, tx, ty, s})=>
             ({
-              x: Math.sqrt((v.px - v.tx) ** 2 + (v.py - v.ty) ** 2),
-              y: v.s
+              x: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2),
+              y: s
             })
           )
         }
@@ -183,10 +183,10 @@ export const mutations = {
       [
         {
           label: 'タッチ誤差と彩度',
-          data: resultsInALine.map(v =>
+          data: resultsInALine.map(({px, py, tx, ty, l})=>
             ({
-              x: Math.sqrt((v.px - v.tx) ** 2 + (v.py - v.ty) ** 2),
-              y: v.l
+              x: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2),
+              y: l
             })
           )
         }
@@ -201,10 +201,10 @@ export const mutations = {
       [
         {
           label: 'タッチ箇所(x軸)と所要時間',
-          data: resultsInALine.map(v =>
+          data: resultsInALine.map(({dx, px, t}) =>
             ({
-              x: (100 / v.dx * v.px) + ~~(Math.random() * 5),
-              y: v.t < 0 ? 0 : v.t > 5 ? 5 : v.t
+              x: (100 / dx * px) + ~~(Math.random() * 5),
+              y: t < 0 ? 0 : t > 5 ? 5 : t
             })
           )
         }
@@ -219,10 +219,10 @@ export const mutations = {
       [
         {
           label: 'タッチ箇所(y軸)と所要時間',
-          data: resultsInALine.map(v =>
+          data: resultsInALine.map(({dy, py, t}) =>
             ({
-              x: (100 / v.dy * v.py) + ~~(Math.random() * 5),
-              y: v.t < 0 ? 0 : v.t > 5 ? 5 : v.t
+              x: (100 / dy * py) + ~~(Math.random() * 5),
+              y: t < 0 ? 0 : t > 5 ? 5 : t
             })
           )
         }
