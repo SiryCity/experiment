@@ -52,11 +52,11 @@ export const mutations = {
     console.dir(rawResults)
     console.dir(results)
     
-    //alert(results.filter(e => e.v && e.v === 2 ).length / 100)
-    //alert([
-    //  results.filter(e => e.d === 'right' ).length,
-    //  results.filter(e => e.d === 'left' ).length,
-    //])
+    console.info(results.filter(e => e.v && e.v === 2 ).length / 100)
+    console.info([
+      results.filter(e => e.d === 'right' ).length,
+      results.filter(e => e.d === 'left' ).length,
+    ])
 
     ~chart
     `scatter--n-time`
