@@ -144,7 +144,9 @@ export const mutations = {
           label: 'タッチ誤差と所要時間',
           data: results.map(({px, py, tx, ty, t}) =>
             ({
-              x: Math.sqrt((px - tx) ^ 2 + (py - ty) ^ 2),
+              x: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2) > 600
+              ? 600
+              : Math.sqrt((px - tx) ** 2 + (py - ty) ** 2),
               y: t > 5 ? 5 : t
             })
           )
@@ -183,7 +185,7 @@ export const mutations = {
       datasets:
       [
         {
-          label: 'タッチ誤差と明度',
+          label: 'タッチ誤差と彩度',
           data: results.map(({px, py, tx, ty, s})=>
             ({
               x: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2) > 600
@@ -203,7 +205,7 @@ export const mutations = {
       datasets:
       [
         {
-          label: 'タッチ誤差と彩度',
+          label: 'タッチ誤差と明度',
           data: results.map(({px, py, tx, ty, l})=>
             ({
               x: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2) > 600
