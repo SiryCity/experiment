@@ -4,19 +4,25 @@
 <template lang="pug">
   div
     canvas#scatter--n-time
+    canvas#scatter--n-dist
+    canvas#scatter--dist-time
+    hr
+    hr
+    hr
     canvas#scatter--h-time
     canvas#scatter--l-time
     canvas#scatter--s-time
-    canvas#scatter--dist-time
+    canvas#scatter--px-time
+    canvas#scatter--py-time
     canvas#scatter--dist-h
     canvas#scatter--dist-s
     canvas#scatter--dist-l
-    canvas#scatter--px-time
-    canvas#scatter--px-time--right
-    canvas#scatter--px-time--left
-    canvas#scatter--py-time
-    canvas#scatter--py-time--right
-    canvas#scatter--py-time--left
+    canvas#scatter--px-dist
+    canvas#scatter--py-dist
+    //-canvas#scatter--px-time--right
+    //-canvas#scatter--px-time--left
+    //-canvas#scatter--py-time--right
+    //-canvas#scatter--py-time--left
 </template>
 
 <script>

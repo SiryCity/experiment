@@ -77,6 +77,26 @@ export const mutations = {
     })
 
     ~chart
+    `scatter--n-dist`
+    `scatter`
+    ({
+      datasets:
+      [
+        {
+          label: 'タッチ回数とタッチ誤差',
+          data: results.map(({n, px, py, tx, ty}) =>
+            ({
+              x: n,
+              y: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2) > 600
+              ? 600
+              : Math.sqrt((px - tx) ** 2 + (py - ty) ** 2)
+            })
+          )
+        }
+      ]
+    })
+
+    ~chart
     `scatter--h-time`
     `scatter`
     ({
@@ -161,37 +181,17 @@ export const mutations = {
       datasets:
       [
         {
-          label: 'タッチ誤差と色相',
+          label: '色相とタッチ誤差',
           data: results.map(({px, py, tx, ty, h, v})=>
             ({
-              x: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2) > 600
+              y: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2) > 600
                 ? 600
                 : Math.sqrt((px - tx) ** 2 + (py - ty) ** 2),
-              y: ver(v) === 1
+              x: ver(v) === 1
                 ? ~~(h / 255 * 360)
                 : ver(v) === 2
                 ? ~~((h - 256) / 104 * 360)
                 : h,
-            })
-          )
-        }
-      ]
-    })
-    
-    ~chart
-    `scatter--dist-s`
-    `scatter`
-    ({
-      datasets:
-      [
-        {
-          label: 'タッチ誤差と彩度',
-          data: results.map(({px, py, tx, ty, s})=>
-            ({
-              x: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2) > 600
-              ? 600
-              : Math.sqrt((px - tx) ** 2 + (py - ty) ** 2),
-              y: s
             })
           )
         }
@@ -205,13 +205,33 @@ export const mutations = {
       datasets:
       [
         {
-          label: 'タッチ誤差と明度',
+          label: '明度とタッチ誤差',
           data: results.map(({px, py, tx, ty, l})=>
             ({
-              x: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2) > 600
+              y: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2) > 600
               ? 600
               : Math.sqrt((px - tx) ** 2 + (py - ty) ** 2),
-              y: l
+              x: l
+            })
+          )
+        }
+      ]
+    })
+    
+    ~chart
+    `scatter--dist-s`
+    `scatter`
+    ({
+      datasets:
+      [
+        {
+          label: '彩度とタッチ誤差',
+          data: results.map(({px, py, tx, ty, s})=>
+            ({
+              y: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2) > 600
+              ? 600
+              : Math.sqrt((px - tx) ** 2 + (py - ty) ** 2),
+              x: s
             })
           )
         }
@@ -235,7 +255,7 @@ export const mutations = {
         }
       ]
     })
-    
+    /*
     ~chart
     `scatter--px-time--right`
     `scatter`
@@ -271,7 +291,7 @@ export const mutations = {
         }
       ]
     })
-    
+    */
     ~chart
     `scatter--py-time`
     `scatter`
@@ -289,7 +309,7 @@ export const mutations = {
         }
       ]
     })
-    
+/*
     ~chart
     `scatter--py-time--right`
     `scatter`
@@ -325,7 +345,47 @@ export const mutations = {
         }
       ]
     })
+*/
 
+    ~chart
+    `scatter--px-dist`
+    `scatter`
+    ({
+      datasets:
+      [
+        {
+          label: 'タッチ箇所(x軸)とタッチ誤差',
+          data: results.map(({dx, px, py, tx, ty}) =>
+            ({
+              x: (100 / dx * px) + ~~(Math.random() * 5),
+              y: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2) > 600
+              ? 600
+              : Math.sqrt((px - tx) ** 2 + (py - ty) ** 2),
+            })
+          )
+        }
+      ]
+    })
+
+    ~chart
+    `scatter--py-dist`
+    `scatter`
+    ({
+      datasets:
+      [
+        {
+          label: 'タッチ箇所(y軸)とタッチ誤差',
+          data: results.map(({dy, px, py, tx, ty}) =>
+            ({
+              x: (100 / dy * py) + ~~(Math.random() * 5),
+              y: Math.sqrt((px - tx) ** 2 + (py - ty) ** 2) > 600
+              ? 600
+              : Math.sqrt((px - tx) ** 2 + (py - ty) ** 2),
+            })
+          )
+        }
+      ]
+    })
     /*
     ~chart `myChart` `line`
     ({
