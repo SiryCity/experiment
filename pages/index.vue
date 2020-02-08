@@ -12,6 +12,7 @@
     p 興味を持っていただきありがとうございます。
     p 概要をお読みの上、よろしければ実験にご協力をお願いいたします。
     next-button(to='/consent' text='実験の概要を読む')
+    p(@click='$store.dispatch("test/authAction")') {{$store.getters['test/authGetter']}}
 </template>
 
 <script>
