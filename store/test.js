@@ -1,10 +1,20 @@
-import firebase from "firebase/app"
+import firebase from 'firebase'
 
 
 export const actions = {
   async authAction({commit}){
     
-    const RESULT = 'pushed'
+    const EMAIL = 'sirycity2018@gmail.com'
+    const PASSWORD = null
+
+    const user = await firebase.auth().createUserWithEmailAndPassword(EMAIL, PASSWORD).catch(e => alert(e.message))
+    
+    alert('Create account: ', user)
+    console.dir(user)
+    
+    
+
+    const RESULT = '新規作成しました'
 
     commit('authMutation', RESULT)
   }
@@ -20,7 +30,7 @@ export const mutations = {
 
 export const state = () => 
   ({
-    authState : 'push'
+    authState : '新規作成'
   })
 
 
