@@ -5,10 +5,12 @@ export const actions = {
   async authAction({commit}){
     
     const EMAIL = 'sirycity2018@gmail.com'
-    const PASSWORD = null
+    const PASSWORD = '111111'
 
     const user = await firebase.auth().createUserWithEmailAndPassword(EMAIL, PASSWORD).catch(e => alert(e.message))
     
+    if(!user) return 
+
     alert('Create account: ', user)
     console.dir(user)
     
