@@ -24,7 +24,7 @@ jobs:
       run: |
           npm install yarn
           yarn
-          yarn ci-generate cross-env MES=\"embedded\" nuxt generate
+          yarn ci-generate cross-env MES=\"${{ secrets.TEST_MES }}\" nuxt generate
     - name: deploy to Firebase Hosting
       uses: w9jds/firebase-action@master
       with:
