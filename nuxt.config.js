@@ -40,6 +40,10 @@ module.exports = {
   modules: [
     '@nuxtjs/dotenv',
   ],
+  env: {
+    ENVIRONMENT1: process.env.ENVIRONMENT1 || 'dev-or',
+    ENVIRONMENT2: process.env.ENVIRONMENT2 && 'dev-and',
+  },
   /*
   ** Build configuration
   */
