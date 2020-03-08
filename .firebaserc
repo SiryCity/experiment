@@ -3,15 +3,13 @@
     "default": "experiment-b0814",
   },
   "targets": {
-    "experiment": {
-      "hosting": {
-        "test": [
-          "experiment-b0814"
-        ],
-        "prod": [
-          "experiment-c0303"
-        ]
-      }
+    "hosting": {
+      "test": [
+        "experiment-b0814"
+      ],
+      "prod": [
+        "experiment-c0303"
+      ]
     }
   }
 }

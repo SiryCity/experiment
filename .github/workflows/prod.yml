@@ -27,4 +27,3 @@ jobs:
         args: deploy --only hosting:prod
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        PROJECT_ID: experiment-b0814
