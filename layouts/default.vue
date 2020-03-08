@@ -9,6 +9,13 @@ export default {
     if(process.client){
       this.$store.commit('others/setStatic100vh')
     }
+  },
+  head() {
+    return {
+      meta: [
+        { name: "robots", content: process.env.META },
+      ],
+    }
   }
 }
 </script>
