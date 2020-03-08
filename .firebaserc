@@ -1,8 +1,6 @@
 {
   "projects": {
     "default": "experiment-b0814",
-    "experiment": "experiment-b0814",
-    "experiment2": "experiment-b0814"
   },
   "targets": {
     "experiment": {
