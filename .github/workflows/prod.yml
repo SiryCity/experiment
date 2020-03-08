@@ -3,7 +3,7 @@ name: deploy to prod env
 on:
   create:
     tags:
-    - release
+    - release_*
 jobs:
   build:
     runs-on: ubuntu-latest
