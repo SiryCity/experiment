@@ -3,7 +3,7 @@
     "default": "experiment-b0814"
   },
   "targets": {
-    "experiment": {
+    "experiment-b0814": {
       "hosting": {
         "test": [
           "experiment-b0814"
