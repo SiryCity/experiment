@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "experiment-b0814"
+    "default": "experiment-b0814",
+    "experiment-b0814": "experiment-b0814",
+    "staging": "experiment-b0814"
   }
 }
