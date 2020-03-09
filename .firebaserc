@@ -5,6 +5,12 @@
   "targets": {
     "experiment-b0814": {
       "hosting": {
+        "test": [
+          "experiment-test-env"
+        ],
+        "prod": [
+          "experiment-prod-env"
+        ]
       }
     }
   }
