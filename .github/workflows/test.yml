@@ -20,15 +20,15 @@ jobs:
       run: |
         yarn
         yarn ci-generate cross-env META=\"noindex\" MES=\"${{ secrets.TEST_MES }}\" nuxt generate
-    - name: prepare to deploy to Firebase Hosting
+    - name: set domain
       uses: w9jds/firebase-action@master
       with:
-        args: target:apply hosting test ${{ secrets.TEST_DOMAIN }}
+        args: target:apply hosting domain ${{ secrets.TEST_DOMAIN }}
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-    - name: deploy to Firebase Hosting
+    - name: deploy
       uses: w9jds/firebase-action@master
       with:
-        args: deploy --only hosting:test
+        args: deploy --only hosting:domain
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
