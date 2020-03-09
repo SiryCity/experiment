@@ -6,10 +6,10 @@
     "experiment-b0814": {
       "hosting": {
         "test": [
-          "experiment-b0814"
+          "experiment-test-env"
         ],
         "prod": [
-          "experiment-c0303"
+          "experiment-prod-env"
         ]
       }
     }
