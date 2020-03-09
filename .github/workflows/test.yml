@@ -23,12 +23,12 @@ jobs:
     - name: set domain
       uses: w9jds/firebase-action@master
       with:
-        args: target:apply hosting domain ${{ secrets.TEST_DOMAIN }}
+        args: target:apply hosting test ${{ secrets.TEST_DOMAIN }}
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
     - name: deploy
       uses: w9jds/firebase-action@master
       with:
-        args: deploy --only hosting:domain
+        args: deploy --only hosting:test
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
