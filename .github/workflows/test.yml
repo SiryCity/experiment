@@ -17,16 +17,18 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: generate
-      run: yarn ci-generate cross-env META=\"noindex\" MES=\"${{ secrets.TEST_MES }}\" nuxt generate
-    - name: deploy to Firebase Hosting
-      uses: w9jds/firebase-action@master
-      with:
-        args: deploy --only hosting:test
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      run: |
+        yarn
+        yarn ci-generate cross-env META=\"noindex\" MES=\"${{ secrets.TEST_MES }}\" nuxt generate
     - name: prepare to deploy to Firebase Hosting
       uses: w9jds/firebase-action@master
       with:
         args: --version
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+    - name: deploy to Firebase Hosting
+      uses: w9jds/firebase-action@master
+      with:
+        args: deploy --only hosting:test
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
