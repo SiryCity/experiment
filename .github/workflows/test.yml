@@ -24,7 +24,9 @@ jobs:
     - name: deploy to Firebase Hosting
       run: |
         yarn add firebase-tools
-        firebase deploy --only hosting:test --token ${{ secrets.FIREBASE_TOKEN }}
+        firebase --version
+      # firebase deploy --only hosting:test --token ${{ secrets.FIREBASE_TOKEN }}
+
       # uses: w9jds/firebase-action@master
       # with:
       #   args: deploy --only hosting:test
