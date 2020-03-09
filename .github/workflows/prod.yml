@@ -18,10 +18,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: generate
       run: |
-          npm install yarn
-          yarn
-          yarn ci-generate cross-env META=\"noindex\"  MES=\"${{ secrets.PROD_MES }}\" nuxt generate
-        # yarn ci-generate cross-env META=\"index\"  MES=\"${{ secrets.PROD_MES }}\" nuxt generate
+        npm install yarn
+        yarn
+        yarn ci-generate cross-env META=\"noindex\" MES=\"${{ secrets.PROD_MES }}\" nuxt generate
+      # yarn ci-generate cross-env META=\"index\"  MES=\"${{ secrets.PROD_MES }}\" nuxt generate
     - name: deploy to Firebase Hosting
       uses: w9jds/firebase-action@master
       with:
