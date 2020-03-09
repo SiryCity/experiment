@@ -23,7 +23,7 @@ jobs:
     - name: prepare to deploy to Firebase Hosting
       uses: w9jds/firebase-action@master
       with:
-        args: target:apply hosting test experiment-test-env
+        args: target:apply hosting test ${{ secrets.TEST_DOMAIN }}
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
     - name: deploy to Firebase Hosting
