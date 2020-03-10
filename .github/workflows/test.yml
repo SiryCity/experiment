@@ -20,7 +20,9 @@ jobs:
       run: |
         yarn
         yarn ci-generate cross-env META=\"noindex\" MES=\"${{ secrets.TEST_MES }}\" nuxt generate
-        yarn add global firebase-tools
+        yarn add global firebase-
+    - deploy
+      run: |
         firebase --version
     # - name: choose project
     #   uses: w9jds/firebase-action@master
