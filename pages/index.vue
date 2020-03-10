@@ -22,7 +22,7 @@ export default {
   },
   mounted(){
     this.$store.dispatch('redirect/redirection', 'index')
-    alert(`MES IS ${process.env.MES} and ${process.env.META}`)
+    alert(`MES IS ${process.env.MES}`)
   },
 }
 </script>

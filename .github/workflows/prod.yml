@@ -1,7 +1,7 @@
 name: deploy to prod env
 
 on:
-  create:
+  push:
     tags:
     - release_*
 jobs:
@@ -19,8 +19,8 @@ jobs:
     - name: generate
       run: |
         yarn
-        yarn ci-generate cross-env META=\"noindex\" MES=\"${{ secrets.PROD_MES }}\" nuxt generate
-      # yarn ci-generate cross-env META=\"index\"  MES=\"${{ secrets.PROD_MES }}\" nuxt generate
+        yarn ci-generate cross-env META=noindex MES=${{ secrets.PROD_MES }} nuxt generate
+      # yarn ci-generate cross-env META=index  MES=${{ secrets.PROD_MES }} nuxt generate
     - name: choose project
       uses: w9jds/firebase-action@master
       with:
