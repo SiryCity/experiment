@@ -1,7 +1,9 @@
 name: deploy to prod env
 
 on:
-  create:
+  push:
+    branches:
+    - master
     tags:
     - release_*
 jobs:
