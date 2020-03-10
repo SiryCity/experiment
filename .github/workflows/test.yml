@@ -23,7 +23,7 @@ jobs:
     - name: choose project
       uses: w9jds/firebase-action@master
       with:
-        args: use experiment-b0814
+        args: use ${{ secrets.PROJECT_ID }}
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
     - name: set domain
