@@ -20,22 +20,24 @@ jobs:
       run: |
         yarn
         yarn ci-generate cross-env META=\"noindex\" MES=\"${{ secrets.TEST_MES }}\" nuxt generate
-    - name: choose project
-      uses: w9jds/firebase-action@master
-      with:
-        args: use experiment-b0814
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-    - name: set domain
-      uses: w9jds/firebase-action@master
-      with:
-        args: target:apply hosting test ${{ secrets.TEST_DOMAIN }}
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-    - name: deploy
-      uses: w9jds/firebase-action@master
-      with:
-        args: deploy --only hosting:test
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        PROJECT_ID: experiment-b0814
+        yarn add global firebase-tools
+        firebase --version
+    # - name: choose project
+    #   uses: w9jds/firebase-action@master
+    #   with:
+    #     args: use experiment-b0814
+    #   env:
+    #     FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+    # - name: set domain
+    #   uses: w9jds/firebase-action@master
+    #   with:
+    #     args: target:apply hosting test ${{ secrets.TEST_DOMAIN }}
+    #   env:
+    #     FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+    # - name: deploy
+    #   uses: w9jds/firebase-action@master
+    #   with:
+    #     args: deploy --only hosting:test
+    #   env:
+    #     FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+    #     PROJECT_ID: experiment-b0814
