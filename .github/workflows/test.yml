@@ -20,6 +20,9 @@ jobs:
       run: |
         yarn
         yarn ci-generate cross-env META=noindex MES=${{ secrets.TEST_MES }} nuxt generate
+        cd functions
+        yarn
+        cd ..
     - name: choose project
       uses: w9jds/firebase-action@master
       with:
@@ -35,7 +38,7 @@ jobs:
     - name: deploy
       uses: w9jds/firebase-action@master
       with:
-        args: deploy --only hosting:test
+        args: deploy --only hosting:test, functions:helloWorld
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         PROJECT_ID: ${{ secrets.PROJECT_ID }}
