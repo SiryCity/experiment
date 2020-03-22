@@ -1,4 +1,4 @@
-name: deploy to firebase.functions.test
+name: deploy to firebase.hosting.test
 
 on:
   push:
@@ -9,14 +9,22 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x]
+        node-version: [12.x]
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: generate
+    - name: generate hosting
+      run: |
+        yarn
+        yarn ci-generate cross-env META=noindex MES=${{ secrets.TEST_MES }} nuxt generate
+    - name: Use Node.js 10.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+    - name: generate functions
       run: |
         cd functions
         yarn
@@ -33,7 +41,14 @@ jobs:
         args: target:apply hosting test ${{ secrets.TEST_DOMAIN }}
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-    - name: deploy
+    - name: deploy hosting
+      uses: w9jds/firebase-action@master
+      with:
+        args: deploy --only hosting:test
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        PROJECT_ID: ${{ secrets.PROJECT_ID }}
+    - name: deploy functions
       uses: w9jds/firebase-action@master
       with:
         args: deploy --only functions:app
