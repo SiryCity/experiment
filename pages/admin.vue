@@ -27,6 +27,14 @@
 
 <script>
 export default {
+    head () {
+    return {
+      title: 'vue-metaのタイトル',
+      meta: [
+        { hid: 'description', name: 'description', content: 'vue-metaのdescriprtion' }
+      ]
+    }
+  },
   mounted(){
     this.$store.dispatch('firebase/select')
   }
