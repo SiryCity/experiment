@@ -1,4 +1,4 @@
-name: deploy to prod env
+name: deploy to firebase.hosting.prod
 
 on:
   push:
