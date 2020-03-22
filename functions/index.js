@@ -1,21 +1,25 @@
-const functions = require('firebase-functions');
+const functions = require('firebase-functions')
+const express = require('express')
 const { Nuxt } = require('nuxt')
-const app = require('express')()
-const nuxt = new Nuxt({
-  dev: false,
-  buildDir: '.nuxt',
-  build: {
-    publicPath: '/'
-  }
-})
 
-function handler(req, res) {
-  nuxt.renderRoute('/', { req }).then(result => {
+const app = express()
+
+const config = {
+  dev: false,
+  buildDir: 'nuxt',
+  build: {
+    publicPath: '/public/'
+  }
+}
+const nuxt = new Nuxt(config)
+
+function handleRequest(req, res) {
+  res.set('Cache-Control', 'public, max-age=600, s-maxage=1200')
+  nuxt.renderRoute('/').then(result => {
     res.send(result.html)
   }).catch(e => {
     res.send(e)
   })
 }
-
-app.use(handler)
+app.get('*', handleRequest)
 exports.app = functions.https.onRequest(app)
