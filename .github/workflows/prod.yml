@@ -1,9 +1,9 @@
-name: deploy to firebase.hosting.test
+name: deploy to prod env
 
 on:
   push:
-    branches:
-    - master
+    tags:
+    - release_*
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,19 +16,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: generate hosting
+    - name: generate
       run: |
         yarn
-        yarn ci-generate cross-env META=noindex MES=${{ secrets.TEST_MES }} nuxt generate
-    - name: Use Node.js 10.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 10.x
-    - name: generate functions
-      run: |
-        cd functions
-        yarn
-        cd ..
+        yarn ci-generate cross-env META=noindex MES=${{ secrets.PROD_MES }} nuxt generate
+      # yarn ci-generate cross-env META=index  MES=${{ secrets.PROD_MES }} nuxt generate
     - name: choose project
       uses: w9jds/firebase-action@master
       with:
@@ -38,20 +30,13 @@ jobs:
     - name: set domain
       uses: w9jds/firebase-action@master
       with:
-        args: target:apply hosting test ${{ secrets.TEST_DOMAIN }}
+        args: target:apply hosting prod ${{ secrets.PROD_DOMAIN }}
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-    - name: deploy hosting
+    - name: deploy
       uses: w9jds/firebase-action@master
       with:
-        args: deploy --only hosting:test
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        PROJECT_ID: ${{ secrets.PROJECT_ID }}
-    - name: deploy functions
-      uses: w9jds/firebase-action@master
-      with:
-        args: deploy --only functions:app
+        args: deploy --only hosting:prod
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         PROJECT_ID: ${{ secrets.PROJECT_ID }}
