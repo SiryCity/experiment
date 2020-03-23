@@ -31,7 +31,8 @@ export default {
     return {
       title: 'vue-metaのタイトル',
       meta: [
-        { hid: 'description', name: 'description', content: 'vue-metaのdescriprtion' }
+        { hid: 'description', name: 'description', content: 'vue-metaのdescriprtion' },
+        { hid: "og:image", property: "og:image", content: "https://experiment-prod-env.web.app/addition.png" }
       ]
     }
   },
