@@ -21,6 +21,7 @@ jobs:
         yarn
         yarn ci-generate cross-env META=noindex MES=${{ secrets.PROD_MES }} nuxt generate
       # yarn ci-generate cross-env META=index  MES=${{ secrets.PROD_MES }} nuxt generate
+# 
     - name: choose project
       uses: w9jds/firebase-action@master
       with:

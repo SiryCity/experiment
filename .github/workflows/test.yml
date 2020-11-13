@@ -29,6 +29,7 @@ jobs:
         cd functions
         yarn
         cd ..
+# 
     - name: choose project
       uses: w9jds/firebase-action@master
       with:
